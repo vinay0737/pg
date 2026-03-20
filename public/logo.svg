@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 48">
+  <!-- Roof icon -->
+  <rect x="2" y="2" width="44" height="44" rx="8" fill="#252220" stroke="#c9a84c" stroke-width="1.5"/>
+  <polyline points="10,38 24,14 38,38" fill="none" stroke="#c9a84c" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round"/>
+  <text x="24" y="45" text-anchor="middle" font-family="Georgia,serif" font-size="8" fill="#c9a84c" font-weight="700">R</text>
+
+  <!-- Brand text -->
+  <text x="56" y="22" font-family="Georgia,serif" font-size="19" fill="#ffffff" font-weight="600" letter-spacing="1">Rajendra</text>
+  <text x="57" y="38" font-family="Georgia,serif" font-size="9" fill="#c9a84c" font-weight="700" letter-spacing="4">HOMESTAY</text>
+</svg>

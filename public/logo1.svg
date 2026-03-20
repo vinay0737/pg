@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Background -->
+  <rect width="200" height="200" rx="20" fill="#0e0d0b"/>
+  <!-- Square icon -->
+  <rect x="50" y="30" width="100" height="80" rx="8" fill="#252220" stroke="#c9a84c" stroke-width="2"/>
+  <!-- Roof line -->
+  <polyline points="63,100 100,48 137,100" fill="none" stroke="#c9a84c" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+  <!-- Door hint -->
+  <rect x="88" y="80" width="24" height="18" rx="3" fill="#c9a84c" opacity="0.2"/>
+  <!-- R -->
+  <text x="100" y="125" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="#c9a84c" font-weight="700" letter-spacing="1">R</text>
+  <!-- Rajendra text -->
+  <text x="100" y="155" text-anchor="middle" font-family="Georgia,serif" font-size="16" fill="#ffffff" letter-spacing="2">Rajendra</text>
+  <!-- HOMESTAY -->
+  <text x="100" y="172" text-anchor="middle" font-family="Georgia,serif" font-size="8" fill="#e4c97a" letter-spacing="4">HOMESTAY</text>
+  <!-- Divider -->
+  <line x1="50" y1="179" x2="150" y2="179" stroke="#c9a84c" stroke-width="0.6" opacity="0.4"/>
+  <!-- Kharghar -->
+  <text x="100" y="192" text-anchor="middle" font-family="Georgia,serif" font-size="7" fill="#8a8070" letter-spacing="2">KHARGHAR</text>
+</svg>

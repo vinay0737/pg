@@ -2,42 +2,76 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="icon" href="%PUBLIC_URL%/fav.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+    <meta name="theme-color" content="#0e0d0b" />
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
+    <!-- ── SEO Meta Tags ── -->
+    <title>Rajendra Homestay | Girls & Gents PG in Kharghar, Navi Mumbai | Sector 12</title>
+    <meta name="description"
+      content="Premium PG accommodation in Sector 12, Kharghar, Navi Mumbai. Single, double & triple sharing rooms from ₹5,000/month. AC dormitory, family room, girls-only floor. 3 min from Kharghar metro. Owner listed — no agents. Call +91 89994 22873." />
+    <meta name="keywords"
+      content="PG in Kharghar, PG Navi Mumbai, girls PG Kharghar, gents PG Kharghar, paying guest Sector 12 Kharghar, AC room PG Kharghar, single sharing PG, double sharing PG, triple sharing PG, dormitory Kharghar, Rajendra Homestay, Rajendra PG, PG near Kharghar metro" />
+    <meta name="author" content="Rajendra Narayan Gulhane" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- ── Open Graph (WhatsApp / Facebook previews) ── -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Rajendra Homestay | Girls & Gents PG in Kharghar, Navi Mumbai" />
+    <meta property="og:description"
+      content="Single, double & triple sharing rooms from ₹5,000/month. AC dormitory & family room available. 3 min from Kharghar metro. No agents — owner listed." />
+    <meta property="og:image" content="https://rajendrahomestay.com/exterior_view/GR2-228455-1085807.jpg" />
+    <meta property="og:url" content="https://rajendrahomestay.com" />
+    <meta property="og:site_name" content="Rajendra Homestay Kharghar" />
+
+    <!-- ── Twitter Card ── -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Rajendra Homestay | Kharghar, Navi Mumbai" />
+    <meta name="twitter:description"
+      content="AC rooms from ₹5,000/month. Girls & gents PG in Sector 12, Kharghar. 3 min to metro. Owner listed." />
+    <meta name="twitter:image" content="https://rajendrahomestay.com/exterior_view/GR2-228455-1085807.jpg" />
+
+    <!-- ── Apple / PWA ── -->
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <!-- ── Local Business Schema (Google rich results) ── -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LodgingBusiness",
+      "name": "Rajendra Homestay",
+      "description": "Girls and gents PG accommodation in Sector 12, Kharghar, Navi Mumbai. Single, double and triple sharing rooms, AC dormitory, and family room available.",
+      "url": "https://rajendrahomestay.com",
+      "telephone": "+918999422873",
+      "email": "rajendragulhane21@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Plot No. G49, Row House, Near Vedanta Hospital, Next to Anjali Pharma Cure",
+        "addressLocality": "Kharghar",
+        "addressRegion": "Navi Mumbai",
+        "postalCode": "410210",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "19.0477",
+        "longitude": "73.0693"
+      },
+      "priceRange": "₹500 - ₹9000",
+      "openingHours": "Mo-Su 00:00-24:00",
+      "amenityFeature": [
+        { "@type": "LocationFeatureSpecification", "name": "WiFi", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Air Conditioning", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "CCTV Security", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Parking", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Kitchen", "value": true }
+      ]
+    }
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
   </body>
 </html>

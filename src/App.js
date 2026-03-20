@@ -39,29 +39,53 @@ const ROOMS = [
     imgs: ['/single_room/1.jpg', '/single_room/2.jpg', '/single_room/3.jpg'],
     highlight: true,
     badge: 'Girls Only',
+    showGst: true,
     amenities: ['₹5,500+GST — Standard AC Room', '₹6,500+GST — Premium AC Room', 'Separate Common Kitchen', 'Gas Stove & Cylinder', 'CCTV Security', 'Curtains', 'Big Size Rooms'],
   },
   {
-    name: 'AC Dormitory (Ground)',
-    price: '₹500',
-    period: '/day  |  Monthly available',
+    name: 'Single Sharing',
+    price: '₹9,000',
+    period: '/month/person',
+    available: 4,
+    floor: 'Both Floors',
+    imgs: ['/single_room/1.jpg', '/single_room/3.jpg'],
+    highlight: false,
+    badge: 'Single',
+    amenities: ['1 Person per Room', 'Attached Washroom', 'Cupboard', 'Cot & Mattress', 'Geyser', 'AC Room', 'Well Ventilated'],
+  },
+  {
+    name: 'Double Sharing',
+    price: '₹6,500',
+    period: '/month/person',
+    available: 6,
+    floor: 'Both Floors',
+    imgs: ['/twin_sharing/7.jpg', '/twin_sharing/8.jpg'],
+    highlight: false,
+    badge: 'Best Value',
+    amenities: ['2 Persons per Room', 'Attached Washroom', 'Cupboard', 'Cot & Mattress', 'Side Table', 'Geyser', 'Well Ventilated'],
+  },
+  {
+    name: 'Triple Sharing',
+    price: '₹5,000',
+    period: '/month/person',
+    available: 5,
+    floor: 'Both Floors',
+    imgs: ['/single_room/4.jpg', '/single_room/5.jpg'],
+    highlight: false,
+    badge: 'Budget',
+    amenities: ['3 Persons per Room', 'Attached Washroom', 'Cupboard', 'Cot & Mattress', 'CCTV Security', 'Well Ventilated'],
+  },
+  {
+    name: 'AC Dormitory',
+    price: '₹5,500',
+    price2: '₹7,500',
+    period: '/bed/month',
     available: 7,
     floor: 'Ground Floor',
     imgs: ['/other_rooms/9.jpg', '/single_room/4.jpg'],
     highlight: false,
     badge: 'AC',
-    amenities: ['6 AC Dorm Beds + 1 Single', 'Attached Washroom', 'Cupboard', 'Cot & Mattress', 'CCTV Security'],
-  },
-  {
-    name: 'Twin / Single Sharing',
-    price: '₹8,000',
-    period: '/month/person',
-    available: 2,
-    floor: 'Both Floors',
-    imgs: ['/twin_sharing/7.jpg', '/twin_sharing/8.jpg'],
-    highlight: false,
-    badge: 'Best Value',
-    amenities: ['Attached Washroom', 'Cupboard', 'Cot & Mattress', 'Side Table', 'Geyser', 'Well Ventilated'],
+    amenities: ['3 Tiers: ₹5,500 / ₹6,500 / ₹7,500', 'Also ₹500/day (daily stay)', 'Attached Washroom', 'Cupboard', 'Cot & Mattress', 'CCTV Security'],
   },
   {
     name: 'Family Room',
@@ -109,23 +133,13 @@ function ListedOnBadges() {
   return (
     <div className="listed-on">
       <span className="listed-label">Also listed on</span>
-      <a
-        href="https://www.booking.com"
-        target="_blank"
-        rel="noreferrer"
-        className="listed-badge listed-booking"
-        title="View on Booking.com"
-      >
+      <a href="https://www.booking.com" target="_blank" rel="noreferrer"
+         className="listed-badge listed-booking" title="View on Booking.com">
         <span className="lb-dot" />
         <span className="lb-text">booking<strong>.com</strong></span>
       </a>
-      <a
-        href="https://www.justdial.com"
-        target="_blank"
-        rel="noreferrer"
-        className="listed-badge listed-justdial"
-        title="View on JustDial"
-      >
+      <a href="https://www.justdial.com" target="_blank" rel="noreferrer"
+         className="listed-badge listed-justdial" title="View on JustDial">
         <span className="lb-jd">JD</span>
         <span className="lb-text">JustDial</span>
       </a>
@@ -133,7 +147,7 @@ function ListedOnBadges() {
   );
 }
 
-// ── ROOM CARD with mini photo slider ────────────────────────────────
+// ── ROOM CARD ────────────────────────────────────────────────────────
 function RoomCard({ room }) {
   const [imgIdx, setImgIdx] = useState(0);
   return (
@@ -143,9 +157,8 @@ function RoomCard({ room }) {
         {room.imgs.length > 1 && (
           <div className="room-img-dots">
             {room.imgs.map((_, i) => (
-              <button key={i}
-                className={`rdot${i === imgIdx ? ' active' : ''}`}
-                onClick={() => setImgIdx(i)} />
+              <button key={i} className={`rdot${i === imgIdx ? ' active' : ''}`}
+                      onClick={() => setImgIdx(i)} />
             ))}
           </div>
         )}
@@ -158,17 +171,10 @@ function RoomCard({ room }) {
         </div>
         <div className="room-price">
           <span className="r-amount">{room.price}</span>
-          {room.price2 && (
-            <>
-              <span className="r-sep">–</span>
-              <span className="r-amount">{room.price2}</span>
-            </>
-          )}
+          {room.price2 && (<><span className="r-sep">–</span><span className="r-amount">{room.price2}</span></>)}
           <span className="r-period">{room.period}</span>
         </div>
-        {room.highlight && (
-          <div className="gst-note">⚠️ GST applicable as per government norms</div>
-        )}
+        {room.showGst && <div className="gst-note">⚠️ GST applicable as per government norms</div>}
         <ul className="room-feats">
           {room.amenities.map((a, j) => (
             <li key={j}><span className="feat-check">✓</span>{a}</li>
@@ -177,6 +183,47 @@ function RoomCard({ room }) {
         <a href="#contact" className={`btn-room${room.highlight ? ' btn-room-gold' : ''}`}>
           Enquire Now
         </a>
+      </div>
+    </div>
+  );
+}
+
+// ── PRICING TABLE ────────────────────────────────────────────────────
+function PricingTable() {
+  const rows = [
+    { type: 'Single Sharing',        price: '₹9,000',       period: '/month/person', icon: '🛏',    group: 'Sharing' },
+    { type: 'Double Sharing',        price: '₹6,500',       period: '/month/person', icon: '🛏🛏',  group: 'Sharing' },
+    { type: 'Triple Sharing',        price: '₹5,000',       period: '/month/person', icon: '🛏🛏🛏',group: 'Sharing' },
+    { type: 'Dorm — Standard',       price: '₹5,500',       period: '/bed/month',    icon: '🏨',    group: 'Dormitory' },
+    { type: 'Dorm — Premium',        price: '₹6,500',       period: '/bed/month',    icon: '🏨',    group: 'Dormitory' },
+    { type: 'Dorm — AC Single',      price: '₹7,500',       period: '/bed/month',    icon: '🏨',    group: 'Dormitory' },
+    { type: 'Dorm Daily',            price: '₹500',         period: '/day',          icon: '📅',    group: 'Dormitory' },
+    { type: 'Girls — Standard',      price: '₹5,500 + GST', period: '/month',        icon: '👩',    group: 'Girls' },
+    { type: 'Girls — Premium',       price: '₹6,500 + GST', period: '/month',        icon: '👩',    group: 'Girls' },
+    { type: 'Family Room',           price: '₹1,200',       period: '/day',          icon: '👨‍👩‍👧',   group: 'Other' },
+  ];
+
+  const groups = ['Sharing', 'Dormitory', 'Girls', 'Other'];
+
+  return (
+    <div className="pricing-table-wrap">
+      <h3 className="pt-title">📋 Complete Pricing Overview</h3>
+      <div className="pt-groups">
+        {groups.map(g => (
+          <div key={g} className="pt-group">
+            <div className="pt-group-label">{g}</div>
+            {rows.filter(r => r.group === g).map((r, i) => (
+              <div key={i} className="pt-row">
+                <span className="pt-type">
+                  <span className="pt-icon">{r.icon}</span>{r.type}
+                </span>
+                <span className="pt-price">
+                  {r.price}<span className="pt-period"> {r.period}</span>
+                </span>
+              </div>
+            ))}
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -195,9 +242,7 @@ function Navbar({ active }) {
   return (
     <nav className={`navbar${scrolled ? ' scrolled' : ''}`}>
       <a href="#home" className="nav-brand">
-        <span className="brand-star">✦</span>
-        <span className="brand-name">Rajendra G.</span>
-        <span className="brand-pg">PG</span>
+        <img src="/logo.svg" alt="Rajendra Homestay" className="brand-logo" />
       </a>
       <ul className={`nav-links${open ? ' open' : ''}`}>
         {links.map(l => (
@@ -236,10 +281,10 @@ function Hero() {
         </h1>
         <p className="hero-sub">
           AC rooms for girls & gents in Sector 12, Kharghar — 3 min from bus stand &
-          metro. Posted directly by owner Rajendra Gulhane. No agents, no extra charges.
+          metro. Single, double & triple sharing. Posted directly by owner Rajendra Gulhane.
         </p>
         <div className="hero-chips">
-          <span>🛏 14 Beds Total</span>
+          <span>🛏 Single / Double / Triple</span>
           <span>👩 Girls 1st Floor</span>
           <span>📍 Sector 12, Kharghar</span>
           <span>⭐ Owner Listed</span>
@@ -261,17 +306,17 @@ function Hero() {
 
 // ── ABOUT ────────────────────────────────────────────────────────────
 const ABOUT_STATS = [
-  { val: '14',   label: 'Total Beds',    icon: '🛏' },
-  { val: '₹500', label: 'From / Day',    icon: '💰' },
-  { val: '2',    label: 'Floors',        icon: '🏠' },
-  { val: '24/7', label: 'Check-In',      icon: '🕐' },
+  { val: '14+',  label: 'Total Beds', icon: '🛏' },
+  { val: '₹500', label: 'From / Day', icon: '💰' },
+  { val: '2',    label: 'Floors',     icon: '🏠' },
+  { val: '24/7', label: 'Check-In',   icon: '🕐' },
 ];
 
 const ABOUT_HIGHLIGHTS = [
-  { icon: '📍', title: 'Prime Location',       desc: 'Sector 12, Kharghar — 3 min from bus stand & Kharghar metro' },
-  { icon: '👩', title: 'Girls Floor',          desc: '1st floor exclusively for girls/females — safe & secure' },
-  { icon: '📹', title: 'CCTV Surveillance',    desc: 'Full security under 24/7 CCTV monitoring on all floors' },
-  { icon: '🏠', title: 'Owner Listed',         desc: 'No agents — deal directly with owner Rajendra Gulhane' },
+  { icon: '📍', title: 'Prime Location',    desc: 'Sector 12, Kharghar — 3 min from bus stand & Kharghar metro' },
+  { icon: '👩', title: 'Girls Floor',       desc: '1st floor exclusively for girls/females — safe & secure' },
+  { icon: '📹', title: 'CCTV Surveillance', desc: 'Full security under 24/7 CCTV monitoring on all floors' },
+  { icon: '🏠', title: 'Owner Listed',      desc: 'No agents — deal directly with owner Rajendra Gulhane' },
 ];
 
 function About() {
@@ -291,20 +336,19 @@ function About() {
               <div className="amos-sm" style={{ backgroundImage: `url(/single_room/1.jpg)` }} />
             </div>
           </div>
-
           <div className="about-text">
             <span className="sec-label">About Rajendra PG</span>
             <h2 className="sec-title">Safe & Modern Living<br />in the Heart of Kharghar</h2>
             <div className="about-divider" />
             <p className="about-lead">
-              A premium PG accommodation in <strong>Sector 12, Kharghar, Navi Mumbai</strong> with
-              separate floors for girls and gents. AC rooms, fully equipped kitchens, and
-              round-the-clock CCTV security.
+              A premium PG in <strong>Sector 12, Kharghar, Navi Mumbai</strong> with separate floors
+              for girls and gents. Single, double & triple sharing, AC dormitory, and family rooms —
+              all with round-the-clock CCTV security.
             </p>
             <p className="about-body">
-              Listed directly by owner <strong>Rajendra Gulhane</strong> — no agents, no
-              middlemen. Daily check-in available 24 hours. Gate closes at <strong>11:00 PM</strong> for
-              security. Big size well-ventilated rooms with curtains and open terrace access on the 3rd floor.
+              Listed directly by owner <strong>Rajendra Gulhane</strong> — no agents, no middlemen.
+              Daily check-in 24 hours. Gate closes at <strong>11:00 PM</strong>.
+              Big size well-ventilated rooms with curtains and open terrace on the 3rd floor.
             </p>
             <div className="about-stats">
               {ABOUT_STATS.map((s, i) => (
@@ -318,7 +362,6 @@ function About() {
             <ListedOnBadges />
           </div>
         </div>
-
         <div className="about-highlights">
           {ABOUT_HIGHLIGHTS.map((h, i) => (
             <div key={i} className="ahigh-card">
@@ -343,12 +386,13 @@ function Rooms() {
         <div className="sec-header">
           <span className="sec-label">Room Options</span>
           <h2 className="sec-title">Choose Your Space</h2>
-          <p className="sec-sub">Daily ₹500 · Girls rooms from ₹5,500+GST/mo · Family room ₹1,200/day · 24-hr check-in · Gate closes 11 PM</p>
+          <p className="sec-sub">Single ₹9k · Double ₹6.5k · Triple ₹5k · Dorm ₹5.5k–₹7.5k · Family ₹1.2k/day · All per person/month</p>
         </div>
         <div className="rooms-grid">
           {ROOMS.map((r, i) => <RoomCard key={i} room={r} />)}
         </div>
-        <div className="deposit-note">
+        <PricingTable />
+        <div className="deposit-note" style={{ marginTop: '24px' }}>
           <span>💳</span>
           <p>
             Payment directly to owner only — <strong>No agents.</strong> UPI:{' '}
@@ -407,12 +451,8 @@ function Nearby() {
           ))}
         </div>
         <div className="map-cta">
-          <a
-            href="https://maps.google.com/?q=Plot+G49+Row+House+Near+Vedanta+Hospital+Sector+12+Kharghar+Navi+Mumbai"
-            target="_blank"
-            rel="noreferrer"
-            className="btn-gold"
-          >
+          <a href="https://maps.google.com/?q=Plot+G49+Row+House+Near+Vedanta+Hospital+Sector+12+Kharghar+Navi+Mumbai"
+             target="_blank" rel="noreferrer" className="btn-gold">
             📍 Open in Google Maps
           </a>
         </div>
@@ -424,24 +464,18 @@ function Nearby() {
 // ── GALLERY ──────────────────────────────────────────────────────────
 function Gallery() {
   const cats = [
-    { key: 'all',       label: 'All Photos' },
-    { key: 'single',    label: 'Single Room' },
-    { key: 'twin',      label: 'Twin Sharing' },
-    { key: 'other',     label: 'AC Room' },
-    { key: 'common',    label: 'Common Area' },
-    { key: 'kitchen',   label: 'Kitchen' },
-    { key: 'amenities', label: 'Amenities' },
-    { key: 'exterior',  label: 'Exterior' },
+    { key: 'all', label: 'All Photos' }, { key: 'single', label: 'Single Room' },
+    { key: 'twin', label: 'Twin Sharing' }, { key: 'other', label: 'AC Room' },
+    { key: 'common', label: 'Common Area' }, { key: 'kitchen', label: 'Kitchen' },
+    { key: 'amenities', label: 'Amenities' }, { key: 'exterior', label: 'Exterior' },
   ];
   const [filter, setFilter] = useState('all');
   const [lb, setLb] = useState(null);
   const [lbIdx, setLbIdx] = useState(0);
   const shown = filter === 'all' ? GALLERY : GALLERY.filter(p => p.cat === filter);
-
   const openLb = (p, i) => { setLb(shown); setLbIdx(i); };
   const prev = e => { e.stopPropagation(); setLbIdx(i => (i - 1 + lb.length) % lb.length); };
   const next = e => { e.stopPropagation(); setLbIdx(i => (i + 1) % lb.length); };
-
   useEffect(() => {
     const fn = e => {
       if (e.key === 'Escape') setLb(null);
@@ -451,7 +485,6 @@ function Gallery() {
     window.addEventListener('keydown', fn);
     return () => window.removeEventListener('keydown', fn);
   }, [lb]);
-
   return (
     <section id="gallery" className="gallery section">
       <div className="container">
@@ -478,7 +511,6 @@ function Gallery() {
           ))}
         </div>
       </div>
-
       {lb && (
         <div className="lightbox" onClick={() => setLb(null)}>
           <button className="lb-close" onClick={() => setLb(null)}>✕</button>
@@ -494,10 +526,10 @@ function Gallery() {
 
 // ── RULES ────────────────────────────────────────────────────────────
 const GENERAL_RULES = [
-  { icon: '🔔', title: 'Notice Period',     desc: '1 month written notice required before vacating' },
-  { icon: '🚪', title: 'Gate Timing',       desc: 'Gate closes at 11:00 PM every day for security' },
-  { icon: '🕐', title: 'Check-In',          desc: '24-hour check-in · Daily rate ₹500/day (8 AM–8 AM)' },
-  { icon: '👤', title: 'Owner Only',        desc: 'No agents — all dealings directly with Rajendra Gulhane' },
+  { icon: '🔔', title: 'Notice Period', desc: '1 month written notice required before vacating' },
+  { icon: '🚪', title: 'Gate Timing',   desc: 'Gate closes at 11:00 PM every day for security' },
+  { icon: '🕐', title: 'Check-In',      desc: '24-hour check-in · Daily rate ₹500/day (8 AM–8 AM)' },
+  { icon: '👤', title: 'Owner Only',    desc: 'No agents — all dealings directly with Rajendra Gulhane' },
 ];
 
 function Rules() {
@@ -509,21 +541,14 @@ function Rules() {
           <h2 className="sec-title">Guidelines & Policies</h2>
           <p className="sec-sub">Designed to ensure a comfortable, safe environment for everyone.</p>
         </div>
-
         <div className="rgen-grid">
           {GENERAL_RULES.map((r, i) => (
             <div key={i} className="rgen-card">
-              <div className="rgen-icon-wrap">
-                <span className="rgen-icon">{r.icon}</span>
-              </div>
-              <div className="rgen-text">
-                <strong>{r.title}</strong>
-                <p>{r.desc}</p>
-              </div>
+              <div className="rgen-icon-wrap"><span className="rgen-icon">{r.icon}</span></div>
+              <div className="rgen-text"><strong>{r.title}</strong><p>{r.desc}</p></div>
             </div>
           ))}
         </div>
-
         <div className="rperm-grid">
           <div className="rperm-panel rperm-allowed">
             <div className="rperm-panel-header">
@@ -532,21 +557,14 @@ function Rules() {
                   <path d="M4 10l4 4 8-8" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
-              <div>
-                <h4>Permitted</h4>
-                <p>Activities welcome at the PG</p>
-              </div>
+              <div><h4>Permitted</h4><p>Activities welcome at the PG</p></div>
             </div>
             <ul className="rperm-list">
               {RULES_ALLOWED.map((r, i) => (
-                <li key={i}>
-                  <span className="rperm-bullet allowed-bullet">✓</span>
-                  <span>{r}</span>
-                </li>
+                <li key={i}><span className="rperm-bullet allowed-bullet">✓</span><span>{r}</span></li>
               ))}
             </ul>
           </div>
-
           <div className="rperm-panel rperm-prohibited">
             <div className="rperm-panel-header">
               <div className="rperm-icon-circle prohibited-circle">
@@ -554,22 +572,15 @@ function Rules() {
                   <path d="M5 5l10 10M15 5L5 15" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"/>
                 </svg>
               </div>
-              <div>
-                <h4>Prohibited</h4>
-                <p>Not permitted on the premises</p>
-              </div>
+              <div><h4>Prohibited</h4><p>Not permitted on the premises</p></div>
             </div>
             <ul className="rperm-list">
               {RULES_NOTALLOWED.map((r, i) => (
-                <li key={i}>
-                  <span className="rperm-bullet prohibited-bullet">✕</span>
-                  <span>{r}</span>
-                </li>
+                <li key={i}><span className="rperm-bullet prohibited-bullet">✕</span><span>{r}</span></li>
               ))}
             </ul>
           </div>
         </div>
-
         <div className="rules-disclaimer">
           <span className="rules-disclaimer-icon">📋</span>
           <p>
@@ -607,12 +618,12 @@ function Contact() {
           <div className="cinfo">
             <h3>Contact Details</h3>
             {[
-              { icon: '👤', label: 'Owner',             val: 'Rajendra Narayan Gulhane',          href: null },
-              { icon: '📞', label: 'Phone / WhatsApp',  val: '+91 89994 22873',                   href: 'tel:+918999422873' },
-              { icon: '✉️', label: 'Email',             val: 'rajendragulhane21@gmail.com',       href: 'mailto:rajendragulhane21@gmail.com' },
-              { icon: '⏰', label: 'Visiting Hours',    val: '9:00 AM – 8:00 PM (All days)',      href: null },
-              { icon: '🕐', label: 'Check-In Time',     val: '24 Hours (8 AM to 8 AM daily)',     href: null },
-              { icon: '🚪', label: 'Gate Closes',       val: '11:00 PM every day',               href: null },
+              { icon: '👤', label: 'Owner',            val: 'Rajendra Narayan Gulhane',    href: null },
+              { icon: '📞', label: 'Phone / WhatsApp', val: '+91 89994 22873',              href: 'tel:+918999422873' },
+              { icon: '✉️', label: 'Email',            val: 'rajendragulhane21@gmail.com', href: 'mailto:rajendragulhane21@gmail.com' },
+              { icon: '⏰', label: 'Visiting Hours',   val: '9:00 AM – 8:00 PM (All days)', href: null },
+              { icon: '🕐', label: 'Check-In Time',    val: '24 Hours (8 AM to 8 AM daily)', href: null },
+              { icon: '🚪', label: 'Gate Closes',      val: '11:00 PM every day',           href: null },
             ].map((c, i) => (
               <div key={i} className="cinfo-row">
                 <span className="cinfo-icon">{c.icon}</span>
@@ -632,8 +643,6 @@ function Contact() {
                 </p>
               </div>
             </div>
-
-            {/* Payment details block */}
             <div className="payment-box">
               <h4>💳 Payment (Owner Only)</h4>
               <p><strong>UPI:</strong> 8999422873-2@ybl</p>
@@ -641,7 +650,6 @@ function Contact() {
               <p><strong>A/c No:</strong> 68023971562</p>
               <p className="payment-note">⚠️ No agents — pay directly to owner only</p>
             </div>
-
             <a href="https://wa.me/918999422873?text=Hi%20Rajendra%2C%20I'm%20interested%20in%20your%20PG%20in%20Kharghar"
                target="_blank" rel="noreferrer" className="wa-btn">
               💬 Chat on WhatsApp
@@ -675,11 +683,24 @@ function Contact() {
                     <label>Room Type</label>
                     <select name="roomtype" value={form.roomtype} onChange={set}>
                       <option value="">Select...</option>
-                      <option>Girls / Female Room – ₹5,500+GST/mo (Standard)</option>
-                      <option>Girls / Female Room – ₹6,500+GST/mo (Premium)</option>
-                      <option>AC Dormitory (Ground Floor) – ₹500/day</option>
-                      <option>Twin / Single Sharing – ₹8,000/mo/person</option>
-                      <option>Family Room (1st Floor) – ₹1,200/day (2 Adults + 1 Kid)</option>
+                      <optgroup label="── Sharing Rooms ──">
+                        <option>Single Sharing – ₹9,000/mo/person</option>
+                        <option>Double Sharing – ₹6,500/mo/person</option>
+                        <option>Triple Sharing – ₹5,000/mo/person</option>
+                      </optgroup>
+                      <optgroup label="── Dormitory ──">
+                        <option>Dormitory Standard – ₹5,500/bed/month</option>
+                        <option>Dormitory Premium – ₹6,500/bed/month</option>
+                        <option>Dormitory AC Single – ₹7,500/bed/month</option>
+                        <option>Dormitory Daily – ₹500/day</option>
+                      </optgroup>
+                      <optgroup label="── Girls Rooms ──">
+                        <option>Girls Room Standard – ₹5,500+GST/mo</option>
+                        <option>Girls Room Premium – ₹6,500+GST/mo</option>
+                      </optgroup>
+                      <optgroup label="── Other ──">
+                        <option>Family Room – ₹1,200/day (2 Adults + 1 Kid)</option>
+                      </optgroup>
                     </select>
                   </div>
                 </div>
@@ -704,9 +725,17 @@ function Footer() {
     <footer className="footer">
       <div className="container footer-inner">
         <div className="footer-brand">
-          <span className="brand-star">✦</span>
-          <span className="brand-name">Rajendra</span>
-          <span className="brand-pg">PG</span>
+          <span className="brand-icon">
+            <svg width="28" height="28" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+              <rect width="36" height="36" rx="7" fill="#252220" stroke="#c9a84c" strokeWidth="1.2"/>
+              <polyline points="7,28 18,10 29,28" fill="none" stroke="#c9a84c" strokeWidth="2.2" strokeLinejoin="round" strokeLinecap="round"/>
+              <text x="18" y="34" textAnchor="middle" fontFamily="Georgia,serif" fontSize="9" fill="#c9a84c" fontWeight="700">R</text>
+            </svg>
+          </span>
+          <span className="brand-text-wrap">
+            <span className="brand-name">Rajendra</span>
+            <span className="brand-pg">HOMESTAY</span>
+          </span>
         </div>
         <p className="footer-loc">📍 <strong>Plot No. G49, Row House, Sector 12,</strong> Near Vedanta Hospital, Next to Anjali Pharma Cure, Kharghar, Navi Mumbai · Girls & Gents · Owner Listed</p>
         <p className="footer-contact">
