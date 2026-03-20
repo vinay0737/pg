@@ -356,7 +356,7 @@ function Nearby() {
         </div>
         <div className="map-cta">
           <a
-            href="https://maps.google.com/?q=Sector+12+Kharghar+Navi+Mumbai"
+            href="https://maps.google.com/?q=Plot+G49+Row+House+Near+Vedanta+Hospital+Sector+12+Kharghar+Navi+Mumbai"
             target="_blank"
             rel="noreferrer"
             className="btn-gold"
@@ -558,7 +558,7 @@ function Contact() {
               { icon: '👤', label: 'Owner',             val: 'Rajendra Narayan Gulhane',          href: null },
               { icon: '📞', label: 'Phone / WhatsApp',  val: '+91 89994 22873',                   href: 'tel:+918999422873' },
               { icon: '✉️', label: 'Email',             val: 'rajendragulhane21@gmail.com',       href: 'mailto:rajendragulhane21@gmail.com' },
-              { icon: '📍', label: 'Address',           val: 'Sector 12, Kharghar, Navi Mumbai',  href: null },
+              { icon: '📍', label: 'Address',           val: 'Plot No. G49, Row House, Near Vedanta Hospital, Next to Anjali Pharma Cure, Sector 12, Kharghar, Navi Mumbai', href: null },
               { icon: '⏰', label: 'Visiting Hours',    val: '9:00 AM – 8:00 PM (All days)',      href: null },
               { icon: '🕐', label: 'Check-In Time',     val: '24 Hours (8 AM to 8 AM daily)',     href: null },
               { icon: '🚪', label: 'Gate Closes',       val: '11:00 PM every day',               href: null },
@@ -645,7 +645,7 @@ function Footer() {
           <span className="brand-name">Rajendra</span>
           <span className="brand-pg">PG</span>
         </div>
-        <p className="footer-loc">📍 Sector 12, Kharghar, Navi Mumbai · Girls & Gents · Owner Listed</p>
+        <p className="footer-loc">📍 Plot No. G49, Row House, Near Vedanta Hospital, Next to Anjali Pharma Cure, Sector 12, Kharghar, Navi Mumbai · Girls & Gents · Owner Listed</p>
         <p className="footer-contact">
           <a href="tel:+918999422873">+91 89994 22873</a>
           &nbsp;·&nbsp;
