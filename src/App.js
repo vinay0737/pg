@@ -98,7 +98,7 @@ const NEARBY = [
   { icon: '🚌', place: 'Bus Stand (Nimisha & Shilpa Chowk)', dist: '3 min walk' },
   { icon: '🚇', place: 'Kharghar Gaon Metro Station',         dist: '3 min walk' },
   { icon: '🍽️', place: 'Food & Breakfast Hotels',             dist: 'Walking distance' },
-  { icon: '🛕', place: 'Escon Mandir / Central Park',         dist: '7 min walk' },
+  { icon: '🛕', place: 'Iskcon Mandir / Central Park',         dist: '7 min walk' },
   { icon: '🌳', place: 'Gaondevi Udyaan (Garden)',            dist: '1 min walk' },
   { icon: '🏋️', place: 'Gym',                                 dist: '1 min walk' },
   { icon: '🎓', place: 'Lokmanya Tilak College',              dist: 'Nearby' },
