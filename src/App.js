@@ -31,14 +31,15 @@ const HERO_SLIDES = [
 const ROOMS = [
   {
     name: 'Girls / Female Room',
-    price: '₹6,000+',
-    period: '/month',
+    price: '₹5,500',
+    price2: '₹6,500',
+    period: '/month + GST',
     available: 7,
     floor: '1st Floor',
     imgs: ['/single_room/1.jpg', '/single_room/2.jpg', '/single_room/3.jpg'],
     highlight: true,
     badge: 'Girls Only',
-    amenities: ['AC Room', 'Separate Common Kitchen', 'Gas Stove & Cylinder', 'CCTV Security', 'Curtains', 'Big Size Rooms'],
+    amenities: ['₹5,500+GST — Standard AC Room', '₹6,500+GST — Premium AC Room', 'Separate Common Kitchen', 'Gas Stove & Cylinder', 'CCTV Security', 'Curtains', 'Big Size Rooms'],
   },
   {
     name: 'AC Dormitory (Ground)',
@@ -61,6 +62,17 @@ const ROOMS = [
     highlight: false,
     badge: 'Best Value',
     amenities: ['Attached Washroom', 'Cupboard', 'Cot & Mattress', 'Side Table', 'Geyser', 'Well Ventilated'],
+  },
+  {
+    name: 'Family Room',
+    price: '₹1,200',
+    period: '/day  |  Independent',
+    available: 1,
+    floor: '1st Floor',
+    imgs: ['/single_room/1.jpg', '/single_room/2.jpg'],
+    highlight: false,
+    badge: 'Family',
+    amenities: ['Attached Toilet & Bathroom', '2 Adults + 1 Kid', 'Independent Room', 'CCTV Security', 'Well Ventilated', 'Sector 12, Kharghar'],
   },
 ];
 
@@ -92,6 +104,35 @@ const NEARBY = [
   { icon: '🎓', place: 'Lokmanya Tilak College',              dist: 'Nearby' },
 ];
 
+// ── LISTED ON BADGES ─────────────────────────────────────────────────
+function ListedOnBadges() {
+  return (
+    <div className="listed-on">
+      <span className="listed-label">Also listed on</span>
+      <a
+        href="https://www.booking.com"
+        target="_blank"
+        rel="noreferrer"
+        className="listed-badge listed-booking"
+        title="View on Booking.com"
+      >
+        <span className="lb-dot" />
+        <span className="lb-text">booking<strong>.com</strong></span>
+      </a>
+      <a
+        href="https://www.justdial.com"
+        target="_blank"
+        rel="noreferrer"
+        className="listed-badge listed-justdial"
+        title="View on JustDial"
+      >
+        <span className="lb-jd">JD</span>
+        <span className="lb-text">JustDial</span>
+      </a>
+    </div>
+  );
+}
+
 // ── ROOM CARD with mini photo slider ────────────────────────────────
 function RoomCard({ room }) {
   const [imgIdx, setImgIdx] = useState(0);
@@ -117,8 +158,17 @@ function RoomCard({ room }) {
         </div>
         <div className="room-price">
           <span className="r-amount">{room.price}</span>
+          {room.price2 && (
+            <>
+              <span className="r-sep">–</span>
+              <span className="r-amount">{room.price2}</span>
+            </>
+          )}
           <span className="r-period">{room.period}</span>
         </div>
+        {room.highlight && (
+          <div className="gst-note">⚠️ GST applicable as per government norms</div>
+        )}
         <ul className="room-feats">
           {room.amenities.map((a, j) => (
             <li key={j}><span className="feat-check">✓</span>{a}</li>
@@ -146,7 +196,7 @@ function Navbar({ active }) {
     <nav className={`navbar${scrolled ? ' scrolled' : ''}`}>
       <a href="#home" className="nav-brand">
         <span className="brand-star">✦</span>
-        <span className="brand-name">Rajendra</span>
+        <span className="brand-name">Rajendra G.</span>
         <span className="brand-pg">PG</span>
       </a>
       <ul className={`nav-links${open ? ' open' : ''}`}>
@@ -198,6 +248,7 @@ function Hero() {
           <a href="#contact" className="btn-gold">Book a Visit</a>
           <a href="#rooms" className="btn-ghost">View Rooms & Pricing</a>
         </div>
+        <ListedOnBadges />
       </div>
       <div className="slide-dots">
         {HERO_SLIDES.map((_, i) => (
@@ -264,6 +315,7 @@ function About() {
                 </div>
               ))}
             </div>
+            <ListedOnBadges />
           </div>
         </div>
 
@@ -291,7 +343,7 @@ function Rooms() {
         <div className="sec-header">
           <span className="sec-label">Room Options</span>
           <h2 className="sec-title">Choose Your Space</h2>
-          <p className="sec-sub">Daily ₹500 · Monthly plans available · 24-hr check-in · Gate closes 11 PM</p>
+          <p className="sec-sub">Daily ₹500 · Girls rooms from ₹5,500+GST/mo · Family room ₹1,200/day · 24-hr check-in · Gate closes 11 PM</p>
         </div>
         <div className="rooms-grid">
           {ROOMS.map((r, i) => <RoomCard key={i} room={r} />)}
@@ -300,7 +352,7 @@ function Rooms() {
           <span>💳</span>
           <p>
             Payment directly to owner only — <strong>No agents.</strong> UPI:{' '}
-            <strong>8999422873@ybl</strong> · Bank: <strong>Bank of Maharashtra</strong> ·
+            <strong>8999422873-2@ybl</strong> · Bank: <strong>Bank of Maharashtra</strong> ·
             A/c: <strong>68023971562</strong> (Rajendra Narayan Gulhane)
           </p>
         </div>
@@ -558,7 +610,6 @@ function Contact() {
               { icon: '👤', label: 'Owner',             val: 'Rajendra Narayan Gulhane',          href: null },
               { icon: '📞', label: 'Phone / WhatsApp',  val: '+91 89994 22873',                   href: 'tel:+918999422873' },
               { icon: '✉️', label: 'Email',             val: 'rajendragulhane21@gmail.com',       href: 'mailto:rajendragulhane21@gmail.com' },
-              { icon: '📍', label: 'Address',           val: 'Plot No. G49, Row House, Near Vedanta Hospital, Next to Anjali Pharma Cure, Sector 12, Kharghar, Navi Mumbai', href: null },
               { icon: '⏰', label: 'Visiting Hours',    val: '9:00 AM – 8:00 PM (All days)',      href: null },
               { icon: '🕐', label: 'Check-In Time',     val: '24 Hours (8 AM to 8 AM daily)',     href: null },
               { icon: '🚪', label: 'Gate Closes',       val: '11:00 PM every day',               href: null },
@@ -571,11 +622,21 @@ function Contact() {
                 </div>
               </div>
             ))}
+            <div className="cinfo-row">
+              <span className="cinfo-icon">📍</span>
+              <div>
+                <strong>Address</strong>
+                <p>
+                  <strong className="addr-highlight">Plot No. G49, Row House, Sector 12,</strong>{' '}
+                  Near Vedanta Hospital, Next to Anjali Pharma Cure, Kharghar, Navi Mumbai
+                </p>
+              </div>
+            </div>
 
             {/* Payment details block */}
             <div className="payment-box">
               <h4>💳 Payment (Owner Only)</h4>
-              <p><strong>UPI:</strong> 8999422873@ybl</p>
+              <p><strong>UPI:</strong> 8999422873-2@ybl</p>
               <p><strong>Bank:</strong> Bank of Maharashtra</p>
               <p><strong>A/c No:</strong> 68023971562</p>
               <p className="payment-note">⚠️ No agents — pay directly to owner only</p>
@@ -614,9 +675,11 @@ function Contact() {
                     <label>Room Type</label>
                     <select name="roomtype" value={form.roomtype} onChange={set}>
                       <option value="">Select...</option>
-                      <option>Girls / Female Room – ₹6,000+/mo</option>
+                      <option>Girls / Female Room – ₹5,500+GST/mo (Standard)</option>
+                      <option>Girls / Female Room – ₹6,500+GST/mo (Premium)</option>
                       <option>AC Dormitory (Ground Floor) – ₹500/day</option>
                       <option>Twin / Single Sharing – ₹8,000/mo/person</option>
+                      <option>Family Room (1st Floor) – ₹1,200/day (2 Adults + 1 Kid)</option>
                     </select>
                   </div>
                 </div>
@@ -645,12 +708,17 @@ function Footer() {
           <span className="brand-name">Rajendra</span>
           <span className="brand-pg">PG</span>
         </div>
-        <p className="footer-loc">📍 Plot No. G49, Row House, Near Vedanta Hospital, Next to Anjali Pharma Cure, Sector 12, Kharghar, Navi Mumbai · Girls & Gents · Owner Listed</p>
+        <p className="footer-loc">📍 <strong>Plot No. G49, Row House, Sector 12,</strong> Near Vedanta Hospital, Next to Anjali Pharma Cure, Kharghar, Navi Mumbai · Girls & Gents · Owner Listed</p>
         <p className="footer-contact">
           <a href="tel:+918999422873">+91 89994 22873</a>
           &nbsp;·&nbsp;
           <a href="mailto:rajendragulhane21@gmail.com">rajendragulhane21@gmail.com</a>
         </p>
+        <div className="footer-listed">
+          <span className="footer-listed-label">Also listed on:</span>
+          <a href="https://www.booking.com" target="_blank" rel="noreferrer" className="footer-platform booking-footer">booking<strong>.com</strong></a>
+          <a href="https://www.justdial.com" target="_blank" rel="noreferrer" className="footer-platform jd-footer"><span>JD</span> JustDial</a>
+        </div>
         <div className="footer-links">
           {['home', 'about', 'rooms', 'amenities', 'nearby', 'gallery', 'rules', 'contact'].map(l => (
             <a key={l} href={`#${l}`}>{l[0].toUpperCase() + l.slice(1)}</a>

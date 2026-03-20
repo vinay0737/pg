@@ -37,6 +37,92 @@ a { color: inherit; text-decoration: none; }
 .btn-ghost:hover { border-color: var(--white); background: rgba(255,255,255,.08); }
 .btn-full  { width: 100%; text-align: center; }
 
+/* ── LISTED ON BADGES ── */
+.listed-on {
+  display: flex; align-items: center; gap: 12px;
+  margin-top: 28px; flex-wrap: wrap;
+}
+.listed-label {
+  font-size: .7rem; font-weight: 600; letter-spacing: .12em;
+  text-transform: uppercase; color: rgba(255,255,255,.45);
+}
+.listed-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 7px 16px; border-radius: 8px; font-size: .82rem; font-weight: 600;
+  transition: transform .2s, opacity .2s; cursor: pointer;
+  border: 1px solid transparent;
+}
+.listed-badge:hover { transform: translateY(-2px); opacity: .9; }
+
+/* Booking.com badge */
+.listed-booking {
+  background: #003580; color: #fff;
+  border-color: rgba(255,255,255,.12);
+}
+.listed-booking .lb-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #febb02; flex-shrink: 0;
+}
+.listed-booking .lb-text strong { color: #febb02; }
+
+/* JustDial badge */
+.listed-justdial {
+  background: #ff6600; color: #fff;
+  border-color: rgba(255,255,255,.12);
+}
+.listed-justdial .lb-jd {
+  background: #fff; color: #ff6600;
+  font-size: .68rem; font-weight: 800;
+  padding: 1px 5px; border-radius: 4px;
+  letter-spacing: .04em; flex-shrink: 0;
+}
+
+/* ── GST NOTE on room card ── */
+.gst-note {
+  background: rgba(201,168,76,.08);
+  border: 1px solid rgba(201,168,76,.22);
+  border-radius: 6px;
+  padding: 7px 12px;
+  font-size: .78rem;
+  color: var(--gold-lt);
+  margin-bottom: 14px;
+}
+
+/* Price range separator */
+.r-sep {
+  color: var(--muted);
+  font-size: 1.2rem;
+  margin: 0 2px;
+}
+
+/* ── FOOTER LISTED ON ── */
+.footer-listed {
+  display: flex; align-items: center; justify-content: center;
+  gap: 12px; margin-bottom: 20px; flex-wrap: wrap;
+}
+.footer-listed-label {
+  font-size: .72rem; color: var(--muted); letter-spacing: .08em;
+}
+.footer-platform {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 14px; border-radius: 6px;
+  font-size: .78rem; font-weight: 600;
+  transition: opacity .2s;
+}
+.footer-platform:hover { opacity: .8; }
+.booking-footer {
+  background: #003580; color: #fff;
+}
+.booking-footer strong { color: #febb02; }
+.jd-footer {
+  background: #ff6600; color: #fff;
+}
+.jd-footer span {
+  background: #fff; color: #ff6600;
+  font-size: .65rem; font-weight: 800;
+  padding: 1px 4px; border-radius: 3px;
+}
+
 /* ── NAVBAR ── */
 .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--nav-h); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; transition: background .35s, box-shadow .35s; }
 .navbar.scrolled { background: rgba(14,13,11,.93); backdrop-filter: blur(20px); box-shadow: 0 2px 24px rgba(0,0,0,.6); }
@@ -133,7 +219,7 @@ a { color: inherit; text-decoration: none; }
 
 /* ── ROOMS ── */
 .rooms { background: var(--dark); }
-.rooms-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 26px; margin-bottom: 32px; }
+.rooms-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 26px; margin-bottom: 32px; }
 .room-card  { background: var(--dark2); border-radius: var(--radius); border: 1px solid var(--dark4); overflow: hidden; transition: transform .3s, box-shadow .3s; position: relative; }
 .room-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
 .room-card.featured { border-color: var(--gold); }
@@ -147,7 +233,7 @@ a { color: inherit; text-decoration: none; }
 .room-head  { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 6px; }
 .room-head h3 { font-family: var(--font-display); font-size: 1.3rem; color: var(--white); }
 .room-avail { font-size: .7rem; color: var(--green); font-weight: 600; letter-spacing: .06em; background: rgba(34,197,94,.12); padding: 3px 10px; border-radius: 50px; white-space: nowrap; }
-.room-price { display: flex; align-items: baseline; gap: 6px; margin-bottom: 16px; flex-wrap: wrap; }
+.room-price { display: flex; align-items: baseline; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
 .r-amount   { font-family: var(--font-display); font-size: 1.9rem; color: var(--gold); font-weight: 600; }
 .r-period   { color: var(--muted); font-size: .8rem; }
 .room-feats { list-style: none; margin-bottom: 20px; display: flex; flex-direction: column; gap: 7px; }
@@ -315,9 +401,17 @@ a { color: inherit; text-decoration: none; }
 .wa-float:hover { transform: scale(1.12); }
 @keyframes wapulse { 0%,100% { box-shadow: 0 4px 18px rgba(37,211,102,.4); } 50% { box-shadow: 0 4px 30px rgba(37,211,102,.75); } }
 
+/* Bold address highlight */
+.addr-highlight {
+  color: var(--white);
+  font-weight: 700;
+  font-size: .95rem;
+}
+
 /* ── RESPONSIVE — 1200px ── */
 @media (max-width: 1200px) {
   .nearby-grid { grid-template-columns: repeat(3, 1fr); }
+  .rooms-grid  { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* ── RESPONSIVE — 1024px ── */
@@ -385,4 +479,6 @@ a { color: inherit; text-decoration: none; }
   .hero-chips span { font-size: .72rem; padding: 5px 10px; }
   .deposit-note { flex-direction: column; gap: 8px; }
   .wa-float { width: 46px; height: 46px; font-size: 1.2rem; bottom: 18px; right: 18px; }
+  .listed-on { gap: 8px; }
+  .listed-badge { font-size: .75rem; padding: 6px 12px; }
 }
