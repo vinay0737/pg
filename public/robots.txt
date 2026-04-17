@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://rajendrahomestay.com/sitemap.xml
+Sitemap: https://rajendrahomestay.in/sitemap.xml
+
+# Disallow admin or backend paths if any
+Disallow: /api/
